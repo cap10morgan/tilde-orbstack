@@ -1,0 +1,21 @@
+#!/usr/bin/env bb
+
+(require '[babashka.cli :as cli])
+
+(def cli-opts
+ {:snippet {:coerce :keyword}})
+
+(defn gen-snippet
+ [name]
+ (case name
+  :fish "source ~/.orbstack/shell/init2.fish 2>/dev/null || :\n"))
+
+(defn -main
+ [opts]
+ (when (contains? opts :config)
+  (prn {:name "orbstack", :files {}, :generators {}, :snippets #{:fish}}))
+ (when-let [snippet (:snippet opts)]
+  (-> snippet gen-snippet print)))
+
+(-main (cli/parse-opts *command-line-args* {:spec cli-opts}))
+
