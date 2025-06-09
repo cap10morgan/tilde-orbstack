@@ -8,12 +8,12 @@
 (defn gen-snippet
  [name]
  (case name
-  :fish "source ~/.orbstack/shell/init2.fish 2>/dev/null || :\n"))
+  :config/fish "source ~/.orbstack/shell/init2.fish 2>/dev/null || :\n"))
 
 (defn -main
  [opts]
  (when (contains? opts :config)
-  (prn {:name "orbstack", :files {}, :generators {}, :snippets #{:fish}}))
+  (prn {:name "orbstack", :files {}, :generators {}, :snippets #{:config/fish}}))
  (when-let [snippet (:snippet opts)]
   (-> snippet gen-snippet print)))
 
