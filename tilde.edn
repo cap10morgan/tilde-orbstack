@@ -1,4 +1,4 @@
 {:tilde/plugin 
- {:type       :executable
+ {:type       :input/executable
   :executable "tilde-orbstack"}}
  
